@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.hospital2.PrimaryController">
+   <children>
+      <AnchorPane fx:id="patientPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #023047;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblHello" layoutX="55.0" layoutY="42.0" prefHeight="41.0" prefWidth="270.0" text="Dobar dan, ime." textFill="#8ecae6">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" layoutX="73.0" layoutY="265.0" prefHeight="271.0" prefWidth="1134.0" spacing="75.0">
+               <children>
+                  <ImageView fx:id="imgInfo" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#patientInfoClicked" onMouseEntered="#patientInfoEntered" onMouseExited="#patientInfoExited" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../patient.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="imgKalendar" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#patientKalendarClicked" onMouseEntered="#patientKalendarEntered" onMouseExited="#patientKalendarExited" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../table.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="imgPovijest" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#patientPovijestBolestiClicked" onMouseEntered="#patientPovijestBolestiEntered" onMouseExited="#patientPovijestBolestiExited" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../history.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label fx:id="lblRaspored" alignment="CENTER" layoutX="532.0" layoutY="546.0" prefHeight="27.0" prefWidth="216.0" text="Zakazani termini" textAlignment="CENTER" textFill="#5fbff9" visible="false">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPovijestBolesti" alignment="CENTER" layoutX="298.0" layoutY="546.0" prefHeight="27.0" prefWidth="234.0" text="Osobni podaci" textAlignment="CENTER" textFill="#5fbff9" visible="false">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPovijestBolesti1" alignment="CENTER" layoutX="748.0" layoutY="546.0" prefHeight="27.0" prefWidth="234.0" text="Povijest bolesti" textAlignment="CENTER" textFill="#5fbff9" visible="false">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblVrijeme" layoutX="1049.0" layoutY="42.0" prefHeight="41.0" prefWidth="164.0" text="Vrijeme" textFill="#8ecae6">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="loginPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #8ECAE6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-prompt-text-fill: #023047; -fx-background-color: #023047;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="446.0" layoutY="745.0" prefHeight="41.0" prefWidth="171.0" text="copyright @dg" textFill="#8ecae6" />
+                  <Label fx:id="lblWrongLogin" layoutX="360.0" layoutY="361.0" prefHeight="32.0" prefWidth="270.0" text="Nesto ne valja" textFill="RED" visible="false" />
+               </children>
+            </AnchorPane>
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="255.0" prefHeight="400.0" prefWidth="1241.0" spacing="200.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="200.0">
+               <children>
+                  <ImageView fx:id="img" fitHeight="206.0" fitWidth="206.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../../Desktop/hospital.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="400.0" prefWidth="290.0" spacing="15.0">
+                     <children>
+                        <TextField fx:id="txtUser" prefHeight="25.0" prefWidth="365.0" promptText="username" style="-fx-background-color: #8ECAE6; -fx-prompt-text-fill: #023047;" />
+                        <PasswordField fx:id="txtPassword" promptText="password" style="-fx-background-color: #8ECAE6; -fx-prompt-text-fill: #023047;" />
+                        <Button mnemonicParsing="false" onMouseClicked="#loginClicked" onMouseEntered="#mouseEnteredLogin" onMouseExited="#mouseExitedLogin" style="-fx-background-color: #EBEBEB;" text="Log in" textFill="#023047" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="adminPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #023047;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="58.0" layoutY="242.0" prefHeight="271.0" prefWidth="1134.0">
+               <children>
+                  <ImageView fx:id="addDoctor" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addDoctorClicked" onMouseEntered="#addDoctorEntered" onMouseExited="#addDoctorExited" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../adddoctor.png" />
+                     </image></ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+            <Label fx:id="lblVrijemeAdmin" layoutX="1046.0" layoutY="96.0" prefHeight="17.0" prefWidth="164.0" text="Label" textFill="#8ecae6">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPozdravAdmin" layoutX="107.0" layoutY="96.0" prefHeight="31.0" prefWidth="253.0" text="Label" textFill="#8ecae6">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblAddDoctor" alignment="CENTER" layoutX="213.0" layoutY="525.0" prefHeight="31.0" prefWidth="234.0" text="Dodaj novog korisnika" textFill="#5fbff9" visible="false">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="infoPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #023047;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane alignment="CENTER" layoutX="102.0" layoutY="69.0" prefHeight="664.0" prefWidth="1061.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="166.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="78.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="lblIme" prefHeight="32.0" prefWidth="447.0" text="Ime" textFill="#8ecae6" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblAge" prefHeight="32.0" prefWidth="492.0" text="Datum rođenja" textFill="#8ecae6" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblOib" prefHeight="32.0" prefWidth="372.0" text="Oib" textFill="#8ecae6" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblEmail" prefHeight="32.0" prefWidth="492.0" text="Email" textFill="#8ecae6" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblPrezime" prefHeight="32.0" prefWidth="475.0" text="Prezime" textFill="#8ecae6" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblSpol" prefHeight="32.0" prefWidth="211.0" text="Spol" textFill="#8ecae6" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblTelefon" prefHeight="32.0" prefWidth="506.0" text="Telefon" textFill="#8ecae6" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblOdijel" prefHeight="32.0" prefWidth="498.0" text="Odijel" textFill="#8ecae6" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imgOsobe" fitHeight="150.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                     <image>
+                        <Image url="@../../../photo-1500648767791-00dcc994a43e.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblGrad" prefHeight="32.0" prefWidth="459.0" text="Grad" textFill="#8ecae6" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblAdresa" prefHeight="32.0" prefWidth="494.0" text="Adresa" textFill="#8ecae6" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblStatus" prefHeight="32.0" prefWidth="494.0" text="Status" textFill="#8ecae6" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblRole" prefHeight="32.0" prefWidth="170.0" text="Role" textFill="#8ecae6" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <ImageView fx:id="imgReturn" fitHeight="41.0" fitWidth="49.0" layoutX="1184.0" layoutY="692.0" onMouseClicked="#returnClicked" onMouseEntered="#returnEntered" onMouseExited="#returnExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../return.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="kalendarPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #023047;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TableView fx:id="table" layoutX="87.0" layoutY="95.0" prefHeight="555.0" prefWidth="1220.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="95.0">
+              <columns>
+                <TableColumn prefWidth="137.0" text="Ime" />
+                <TableColumn prefWidth="137.0" text="Prezime" />
+                  <TableColumn prefWidth="137.0" text="Datum rođ" />
+                  <TableColumn prefWidth="137.0" text="Grad" />
+                  <TableColumn prefWidth="137.0" text="Adresa" />
+                  <TableColumn prefWidth="137.0" text="Telefon" />
+                  <TableColumn prefWidth="137.0" text="Datum" />
+                  <TableColumn prefWidth="137.0" text="Vrijeme" />
+                  <TableColumn prefWidth="137.0" text="dr." />
+              </columns>
+            </TableView>
+            <ImageView fx:id="imgReturnKalendar" fitHeight="40.0" fitWidth="50.0" layoutX="1174.0" layoutY="688.0" onMouseClicked="#kalendarReturnClicked" onMouseEntered="#kalendarReturnEntered" onMouseExited="#kalendarReturnExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../return.png" />
+               </image></ImageView>
+            <TextField fx:id="txtSearch" layoutX="193.0" layoutY="45.0" prefHeight="25.0" prefWidth="424.0" promptText="Pretraži pacijenta" />
+            <Button fx:id="buttonSearch" layoutX="874.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#btnSearchClicked" text="Search" />
+            <ComboBox fx:id="cbSearchKrtierij" layoutX="674.0" layoutY="45.0" prefWidth="150.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="povijestPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #023047;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="imgReturnPovijest" fitHeight="40.0" fitWidth="50.0" layoutX="1174.0" layoutY="688.0" onMouseClicked="#povijestReturnClicked" onMouseEntered="#povijestReturnEntered" onMouseExited="#povijestReturnExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../return.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="comboBoxBolesti" layoutX="503.0" layoutY="95.0" prefHeight="25.0" prefWidth="260.0" style="-fx-border-color: #219EBC;" />
+            <Label fx:id="lblNalaz" alignment="CENTER" layoutX="306.0" layoutY="149.0" prefHeight="641.0" prefWidth="668.0" text="Povijest bolesti" textFill="#8ecae6" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="addUserPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #023047;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane alignment="CENTER" layoutX="27.0" layoutY="34.0" prefHeight="664.0" prefWidth="1167.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="txtDoctorIme" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtDoctorAdresa" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txtDoctorPrezime" GridPane.columnIndex="3" />
+                  <TextField fx:id="txtDoctorBrojTelefona" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Ime" textAlignment="CENTER" textFill="#8ecae6">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Spol" textAlignment="CENTER" textFill="#8ecae6" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Adresa" textAlignment="CENTER" textFill="#8ecae6" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Prezime" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Datum rođenja" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Grad" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dpDoctorDatumRodjenja" prefHeight="25.0" prefWidth="306.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="cbDoctorSpol" prefHeight="25.0" prefWidth="306.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Oib" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtDoctorOib" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Odijel" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cbDoctorOdijel" prefHeight="25.0" prefWidth="306.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Broj telefona" textAlignment="CENTER" textFill="#8ecae6" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cbDoctorGradovi" prefHeight="25.0" prefWidth="306.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Role" textAlignment="CENTER" textFill="#8ecae6" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cbRole" prefHeight="25.0" prefWidth="306.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Županija" textAlignment="CENTER" textFill="#8ecae6" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cbZupanije" prefHeight="25.0" prefWidth="306.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtDoctorEmail" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Email" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <Button fx:id="buttonDoctorSave" layoutX="1119.0" layoutY="738.0" mnemonicParsing="false" text="Spremi" textFill="#023047" />
+            <Label fx:id="lblNewUserInformation" alignment="CENTER" layoutX="105.0" layoutY="698.0" prefHeight="89.0" prefWidth="842.0" text="Label" textAlignment="CENTER" textFill="#ffb703" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="doctorPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #023047;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblHelloDoctor" layoutX="55.0" layoutY="42.0" prefHeight="41.0" prefWidth="270.0" text="Dobar dan, ime." textFill="#8ecae6">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblVrijemeDoctor" layoutX="1049.0" layoutY="42.0" prefHeight="41.0" prefWidth="164.0" text="Vrijeme" textFill="#8ecae6">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <VBox layoutX="332.0" layoutY="266.0" prefHeight="271.0" prefWidth="600.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="200.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="271.0" prefWidth="1134.0" spacing="80.0">
+                     <children>
+                        <ImageView fx:id="addPatient" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addPatientClicked" onMouseEntered="#addPatientEntered" onMouseExited="#addPatientExited" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../adddoctor.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="addTermin" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#addTerminClicked" onMouseEntered="#addTerminEntered" onMouseExited="#addTerminExited" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../table2.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="pregledajTermine" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#terminiClicked" onMouseEntered="#terminiEntered" onMouseExited="#terminiExited" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../table.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgSearchPatient" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#searchPatientDoctorClicked" onMouseEntered="#searchPatientDoctorEntered" onMouseExited="#searchPatientDoctorExited" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../find.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="47.0" prefWidth="857.0">
+                     <children>
+                        <Label fx:id="lblAddPatient" alignment="CENTER" prefHeight="32.0" prefWidth="227.0" text="Dodaj novog bolesnika" textAlignment="CENTER" textFill="#5fbff9" visible="false">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblAddTermin" alignment="CENTER" prefHeight="32.0" prefWidth="246.0" text="Dodaj novi termin" textAlignment="CENTER" textFill="#5fbff9" visible="false">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblTermini" alignment="CENTER" prefHeight="32.0" prefWidth="246.0" text="Pregledaj termine" textAlignment="CENTER" textFill="#5fbff9" visible="false">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblSearchPatient" alignment="CENTER" prefHeight="27.0" prefWidth="234.0" text="Pretraži pacijente" textAlignment="CENTER" textFill="#5fbff9" visible="false">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="addTerminPane" layoutX="30.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #023047;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane alignment="CENTER" layoutX="27.0" layoutY="34.0" prefHeight="664.0" prefWidth="1167.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Pacijent" textAlignment="CENTER" textFill="#8ecae6">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Vrijeme dolaska" textAlignment="CENTER" textFill="#8ecae6" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Datum dolaska" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="302.0" text="Opis" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dpDatumDolaska" prefHeight="25.0" prefWidth="306.0" GridPane.columnIndex="3" />
+                  <ComboBox fx:id="cbPacijenti" prefHeight="25.0" prefWidth="306.0" GridPane.columnIndex="1" />
+                  <TextArea fx:id="txtOpisTermina" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #023047;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <opaqueInsets>
+                        <Insets bottom="20.0" />
+                     </opaqueInsets>
+                  </TextArea>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <ComboBox fx:id="cbHours" prefWidth="150.0" />
+                        <ComboBox fx:id="cbMinutes" prefWidth="150.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+            <Button fx:id="buttonTerminSave" layoutX="1119.0" layoutY="738.0" mnemonicParsing="false" text="Spremi" textFill="#023047" />
+            <Label fx:id="lblNewUserInformation1" alignment="CENTER" layoutX="105.0" layoutY="698.0" prefHeight="89.0" prefWidth="842.0" text="Label" textAlignment="CENTER" textFill="#ffb703" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="updateUserPane" layoutX="40.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #023047;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="buttonUpdate" layoutX="1119.0" layoutY="738.0" mnemonicParsing="false" text="Update" textFill="#023047" />
+            <Label fx:id="lblNewUserInformation11" alignment="CENTER" layoutX="105.0" layoutY="698.0" prefHeight="89.0" prefWidth="842.0" text="Label" textAlignment="CENTER" textFill="#ffb703" visible="false">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <GridPane prefHeight="704.0" prefWidth="1256.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="792.0" minWidth="10.0" prefWidth="590.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1075.0" minWidth="10.0" prefWidth="590.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1075.0" minWidth="10.0" prefWidth="590.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1075.0" minWidth="10.0" prefWidth="590.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" text="Datum rođenja" textAlignment="CENTER" textFill="#8ecae6" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtUpdateIme" GridPane.columnIndex="1" />
+                  <Label alignment="CENTER" text="Prezime" textAlignment="CENTER" textFill="#8ecae6" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtUpdatePrezime" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="109.0" text="Ime" textAlignment="CENTER" textFill="#8ecae6">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtUpdateAdresa" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txtUpdateOib" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="txtUpdateEmail" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="110.0" text="Oib" textAlignment="CENTER" textFill="#8ecae6" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="123.0" text="Adresa" textAlignment="CENTER" textFill="#8ecae6" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="176.0" text="Email" textAlignment="CENTER" textFill="#8ecae6" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="324.0" text="Spol" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="321.0" text="Role" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="0.0" prefWidth="574.0" text="Odijel" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="317.0" text="Županija" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="27.0" prefWidth="321.0" text="Grad" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="319.0" text="Status" textAlignment="CENTER" textFill="#8ecae6" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="cbUpdateDateOfBirth" prefHeight="25.0" prefWidth="329.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="cbUpdateSpol" prefHeight="25.0" prefWidth="326.0" GridPane.columnIndex="3" />
+                  <ComboBox fx:id="cbUpdateZupanije" prefHeight="25.0" prefWidth="318.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="cbUpdateGrad" prefHeight="25.0" prefWidth="325.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="cbUpdateRole" prefHeight="25.0" prefWidth="318.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="cbUpdateStatus" prefHeight="25.0" prefWidth="318.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="cbUpdateOdijel" prefHeight="25.0" prefWidth="318.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <Label alignment="CENTER" layoutX="70.0" layoutY="718.0" prefHeight="27.0" prefWidth="176.0" text="Broj telefona" textAlignment="CENTER" textFill="#8ecae6">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtUpdatePhoneNumber" layoutX="315.0" layoutY="719.0" prefHeight="25.0" prefWidth="314.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
